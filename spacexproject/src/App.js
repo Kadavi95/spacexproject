@@ -2,6 +2,14 @@ import React from "react";
 import styled from "styled-components";
 import { LaunchesContainer } from "./Components/LaunchesContainer.js";
 
+//2//
+import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
+
+const client = new ApolloClient({
+  uri: "https://api.spacex.land/graphql",
+  cache: new InMemoryCache(),
+});
+
 const MainSection = styled.main`
   width: 100vw;
   background: rgb(0, 0, 0);
@@ -14,9 +22,11 @@ const MainSection = styled.main`
 function App() {
   return (
     <>
-      <MainSection>
-        <LaunchesContainer></LaunchesContainer>
-      </MainSection>
+      <ApolloProvider client={client}>
+        <MainSection>
+          <LaunchesContainer></LaunchesContainer>
+        </MainSection>
+      </ApolloProvider>
     </>
   );
 }
