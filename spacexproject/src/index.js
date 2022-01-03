@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import './reset.css';
-import './globalStyles.css'
+import './globalStyles.css';
 
 
 ReactDOM.render(
