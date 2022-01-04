@@ -80,17 +80,66 @@ export function DataContainerComponent(props) {
   console.log(props.data.launch_date_local);
 
   let year = [...props.data.launch_date_local].slice(0, 4);
+  let yearStringfied = year.toString().replace(/,/g, "")
   let month = [...props.data.launch_date_local].slice(5, 7);
+  let monthStringfied = month.toString().replace(/,/g, "");
   let day = [...props.data.launch_date_local].slice(8, 10);
+  let dayStringfied = day.toString().replace(/,/g, "")
 
-  let dateInverrted = [...day, "/", ...month, "/", ...year];
-  let dataString = dateInverrted.toString();
-  let dataStringedWithoutCommas = dataString.replace(/,/g, "");
-  console.log("dataString", dataString);
-  console.log("dataStringedWithoutCommas", dataStringedWithoutCommas, typeof dataStringedWithoutCommas);
+  let ArrayOfMonths = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
+  let monthName = null;
 
-  let date = new Date(`"${dataStringedWithoutCommas}"`);
-  console.log(date);
+  if (monthStringfied === "01") {
+    monthName = ArrayOfMonths[0]
+  } else if (monthStringfied === "02") {
+    monthName = ArrayOfMonths[1]
+  }
+   else if (monthStringfied === "03") {
+    monthName = ArrayOfMonths[2]
+  }
+  else if (monthStringfied === "04") {
+    monthName = ArrayOfMonths[3]
+  }
+  else if (monthStringfied === "05") {
+    monthName = ArrayOfMonths[4]
+  }
+  else if (monthStringfied === "06") {
+    monthName = ArrayOfMonths[5]
+  }
+  else if (monthStringfied === "07") {
+    monthName = ArrayOfMonths[6]
+  }
+  else if (monthStringfied === "08") {
+    monthName = ArrayOfMonths[7]
+  }
+   else if (monthStringfied === "09") {
+    monthName = ArrayOfMonths[8]
+  }
+   else if (monthStringfied === "10") {
+    monthName = ArrayOfMonths[9]
+  }
+   else if (monthStringfied === "11") {
+    monthName = ArrayOfMonths[10]
+  } 
+   else if (monthStringfied === "12") {
+    monthName = ArrayOfMonths[11]
+  } 
+  console.log(monthName);
+  console.log(yearStringfied);
+  console.log(dayStringfied);
+
+  let DataString = `${dayStringfied} ${monthName} ${yearStringfied}`
+
+  console.log(DataString);
+  // let dateInverrted = [...day, "/", ...month, "/", ...year];
+  // let dataString = dateInverrted.toString();
+  // let dataStringedWithoutCommas = dataString.replace(/,/g, "");
+  // console.log("dataString", dataString);
+  // console.log("dataStringedWithoutCommas", dataStringedWithoutCommas, typeof dataStringedWithoutCommas);
+
+
+  // let date = new Date(`"${dataStringedWithoutCommas}"`);
+  // console.log(date);
   
 
 
@@ -125,7 +174,10 @@ export function DataContainerComponent(props) {
         </PrimaryDiv>
 
         <SecondaryDiv>
-          <InfoContainer></InfoContainer>
+          <InfoContainer>
+                <InformationParagraph>Launch Date</InformationParagraph>
+                <InformationParagraph>{DataString}</InformationParagraph>
+          </InfoContainer>
           <InfoContainer></InfoContainer>
         </SecondaryDiv>
       </DataContainer>
