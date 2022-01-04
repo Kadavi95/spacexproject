@@ -1,20 +1,22 @@
 import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { ArrowLogoComponent } from "./ArrowLogoComponent";
+import { ArrowLogoComponent } from "./ArrowLogoComponent.js";
 import { DataContainerComponent } from "./DataContainerComponent.js";
+import { ShipsComponent } from "./ShipsComponent.js";
 
 // import { useQuery } from "@apollo/client";
 // import { querySpaceX } from "..";
 
 import { gql, useQuery } from "@apollo/client";
 
-const GET_ROCKETS = gql`
+const GET_STARTS = gql`
   {
     launchesPast(limit: 5) {
       mission_name
       launch_date_local
       launch_site {
         site_name_long
+        site_id
       }
       links {
         article_link
@@ -38,10 +40,10 @@ const GET_ROCKETS = gql`
           }
         }
       }
+     
     }
   }
 `;
-
 
 const ContainerSection = styled.section`
   width: 100%;
@@ -61,7 +63,7 @@ const ErrorText = styled.h1`
   letter-spacing: 0.5rem;
 `;
 export function LaunchesContainer() {
-  const { data, loading, error } = useQuery(GET_ROCKETS);
+  const { data, loading, error } = useQuery(GET_STARTS);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   let singleItem;
@@ -104,10 +106,17 @@ export function LaunchesContainer() {
           primaryCallback={() => incrementCurrentIndex()}
           secondaryCallback={() => decrementCurrentIndex()}
         ></ArrowLogoComponent>
-    
+
         {/* <Title>{dataValue[currentIndex].mission_name}</Title> */}
-        {singleItem !== undefined && <DataContainerComponent data={singleItem} />}
-      
+        {singleItem !== undefined && (
+          <DataContainerComponent data={singleItem} />
+        )}
+        {currentIndex === 0 && <p>Index równy 0</p>}
+        {currentIndex === 1 && <p>Index równy 1</p>}
+        {currentIndex === 2 && <p>Index równy 2</p>}
+        {currentIndex === 3 && <p>Index równy 3</p>}
+        {currentIndex === 4 && <p>Index równy 4</p>}
+        <ShipsComponent currentIndex={currentIndex}></ShipsComponent>
       </ContainerSection>
     </>
   );
