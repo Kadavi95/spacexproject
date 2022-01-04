@@ -7,6 +7,9 @@ const RescueShipContainer = styled.section`
   display: flex;
   justify-content: left;
   align-items: center;
+  @media screen and (max-width: 768px) {
+    width: 70%;
+  }
 `;
 const RescueShipText = styled.p`
   color: #868686;

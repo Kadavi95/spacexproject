@@ -21,6 +21,14 @@ const ShipsContainer = styled.section`
   align-items: flex-start;
   flex-wrap: wrap;
   border-bottom: 1px solid #5c5c5d;
+  @media screen and (max-width: 768px){
+    width: 70%;
+    overflow: scroll;
+    justify-content: center;
+    height: 660px;
+
+    
+  }
 `;
 
 const ShipContainer = styled.div`
@@ -31,6 +39,11 @@ const ShipContainer = styled.div`
   align-items: center;
   background-color: white;
   border-radius: 10px;
+  @media screen and (max-width: 768px){
+    width: 100%;
+    height: 30rem;
+    margin-bottom: 2rem;
+  }
 `;
 
 const IMGContainer = styled.img`
@@ -108,19 +121,19 @@ export function ShipsComponent(props) {
     FirstData = SetOne.map((item, index) => {
       return (
         <>
-          <ShipContainer key={item.id +index}>
+          <ShipContainer key={item.id + index}>
             <IMGContainer src={item.image} alt={item.name}></IMGContainer>
             <HeadingContainer>
               <Heading>{item.name}</Heading>
             </HeadingContainer>
             <InfoContainer>
               <StaticContainer>
-                <StaticInfo >Home Port</StaticInfo>
-                <StaticInfo >Weight[kg]</StaticInfo>
+                <StaticInfo>Home Port</StaticInfo>
+                <StaticInfo>Weight[kg]</StaticInfo>
               </StaticContainer>
-              <StaticContainer >
-                <StaticItemInfo >{item.home_port}</StaticItemInfo>
-                <StaticItemInfo >
+              <StaticContainer>
+                <StaticItemInfo>{item.home_port}</StaticItemInfo>
+                <StaticItemInfo>
                   {item.weight_kg === null ? "unknown" : item.weight_kg}
                 </StaticItemInfo>
               </StaticContainer>
@@ -157,7 +170,7 @@ export function ShipsComponent(props) {
     FourthData = SetFour.map((item, index) => {
       return (
         <>
-          <ShipContainer key={item.id +index}>
+          <ShipContainer key={item.id + index}>
             <IMGContainer src={item.image} alt={item.name}></IMGContainer>
             <HeadingContainer>
               <Heading>{item.name}</Heading>
@@ -208,11 +221,11 @@ export function ShipsComponent(props) {
     if (props.currentIndex === 0 && FirstData !== undefined) {
       return (
         <>
-          <ShipsContainer >{FirstData}</ShipsContainer>
+          <ShipsContainer>{FirstData}</ShipsContainer>
         </>
       );
     } else if (props.currentIndex === 1) {
-      return <ShipsContainer></ShipsContainer>;
+      return <ShipsContainer ></ShipsContainer>;
     } else if (props.currentIndex === 2 && ThirdData !== undefined) {
       return (
         <>

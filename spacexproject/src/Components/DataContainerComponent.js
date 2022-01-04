@@ -1,19 +1,20 @@
 import React from "react";
 import styled from "styled-components";
 import { DataContainer } from "./DataComponentItems/DataContainer";
+import { PrimaryDiv } from "./DataComponentItems/PrimaryDiv";
 
-const PrimaryDiv = styled.div`
-  width: 70%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  /* background-color: green; */
-  @media screen and (max-width: 768px) {
-    width: 100%;
-  }
-`;
+// const PrimaryDiv = styled.div`
+//   width: 70%;
+//   height: 100%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-start;
+//   justify-content: space-evenly;
+//   /* background-color: green; */
+//   @media screen and (max-width: 768px) {
+//     width: 100%;
+//   }
+// `;
 const SecondaryDiv = styled.div`
   width: 30%;
   height: 55%;
