@@ -2,7 +2,6 @@ import React from "react";
 import styled from "styled-components";
 import { DataContainer } from "./DataComponentItems/DataContainer";
 
-
 const PrimaryDiv = styled.div`
   width: 50%;
   height: 100%;
@@ -18,6 +17,13 @@ const SecondaryDiv = styled.div`
   flex-direction: column;
   align-items: flex-start;
   justify-content: space-between;
+`;
+const InfoContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  height: 30%;
+  align-items: flex-start;
+  justify-content: space-evenly;
 `;
 const InformationParagraph = styled.p`
   font-size: 1.6rem;
@@ -37,7 +43,7 @@ const MissionFailed = styled.div`
   text-align: center;
   background-color: red;
   color: #fff;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
   font-size: 1.6rem;
 `;
@@ -46,7 +52,7 @@ const MissionPassed = styled.div`
   text-align: center;
   background-color: green;
   color: black;
-  padding: .5rem 1rem;
+  padding: 0.5rem 1rem;
   border-radius: 2px;
   font-size: 1.6rem;
 `;
@@ -71,32 +77,57 @@ export function DataContainerComponent(props) {
   console.log(props.data);
   console.log(props.data.mission_name);
   console.log(props.data.links.video_link);
+  console.log(props.data.launch_date_local);
+
+  let year = [...props.data.launch_date_local].slice(0, 4);
+  let month = [...props.data.launch_date_local].slice(5, 7);
+  let day = [...props.data.launch_date_local].slice(8, 10);
+
+  let dateInverrted = [...day, "/", ...month, "/", ...year];
+  let dataString = dateInverrted.toString();
+  let dataStringedWithoutCommas = dataString.replace(/,/g, "");
+  console.log("dataString", dataString);
+  console.log("dataStringedWithoutCommas", dataStringedWithoutCommas, typeof dataStringedWithoutCommas);
+
+  let date = new Date(`"${dataStringedWithoutCommas}"`);
+  console.log(date);
+  
+
+
+
   //   props.data.rocket.first_stage.cores[0].land_success;
 
   return (
     <>
       <DataContainer>
         <PrimaryDiv>
-          <InformationParagraph>Mission</InformationParagraph>
-          <MissionTitle>{props.data.mission_name}</MissionTitle>
-          <InformationParagraph>Rocket</InformationParagraph>
-          <StatusParagraph>
-            <InformationParagraph>
-              {props.data.rocket.rocket_name}
-            </InformationParagraph>
-            {props.data.rocket.first_stage.cores[0].land_success === true ? (
-              <MissionPassed>Recovered</MissionPassed>
-            ) : (
-              <MissionFailed>Unrecovered</MissionFailed>
-            )}
-          </StatusParagraph>
+          <InfoContainer>
+            <InformationParagraph>Mission</InformationParagraph>
+            <MissionTitle>{props.data.mission_name}</MissionTitle>
+          </InfoContainer>
+          <InfoContainer>
+            <InformationParagraph>Rocket</InformationParagraph>
+            <StatusParagraph>
+              <InformationParagraph>
+                {props.data.rocket.rocket_name}
+              </InformationParagraph>
+              {props.data.rocket.first_stage.cores[0].land_success === true ? (
+                <MissionPassed>Recovered</MissionPassed>
+              ) : (
+                <MissionFailed>Unrecovered</MissionFailed>
+              )}
+            </StatusParagraph>
+          </InfoContainer>
 
           <ButtonElement target="_blank" href={props.data.links.video_link}>
             Learn more
           </ButtonElement>
         </PrimaryDiv>
 
-        <SecondaryDiv></SecondaryDiv>
+        <SecondaryDiv>
+          <InfoContainer></InfoContainer>
+          <InfoContainer></InfoContainer>
+        </SecondaryDiv>
       </DataContainer>
     </>
   );
