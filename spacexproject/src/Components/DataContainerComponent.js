@@ -10,6 +10,9 @@ const PrimaryDiv = styled.div`
   align-items: flex-start;
   justify-content: space-evenly;
   /* background-color: green; */
+  @media screen and (max-width: 768px) {
+    width: 100%;
+  }
 `;
 const SecondaryDiv = styled.div`
   width: 30%;
@@ -19,6 +22,10 @@ const SecondaryDiv = styled.div`
   align-items: flex-end;
   justify-content: space-evenly;
   /* background-color: white; */
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    align-items: flex-start;
+  }
 `;
 const InfoContainer = styled.div`
   display: flex;
@@ -26,6 +33,9 @@ const InfoContainer = styled.div`
   height: 30%;
   align-items: flex-start;
   justify-content: space-evenly;
+  @media screen and (max-width: 768px) {
+    align-items: flex-start !important;
+  }
 `;
 const InformationParagraph = styled.p`
   font-size: 1.6rem;
@@ -76,6 +86,12 @@ const ButtonElement = styled.a`
   &:hover {
     box-shadow: inset -8.2rem 0 0 0 #fff, inset 8.2rem 0 0 0 #fff;
     color: #000;
+  }
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    text-align: center;
+    padding: 0;
+    padding: 2.5rem 0rem
   }
 `;
 

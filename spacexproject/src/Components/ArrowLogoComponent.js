@@ -28,6 +28,10 @@ import { Container } from "./ArrowLogoItems/ArrowLogoContainer";
 const Logo = styled.img`
   height: 2.415rem;
   margin-top: 2rem;
+  @media screen and (max-width: 768px) {
+    margin-top: 0rem;
+    height: 1.6rem;
+  }
 `;
 
 // const Container = styled.section`

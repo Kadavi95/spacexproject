@@ -3,6 +3,8 @@ import styled from "styled-components";
 import { ArrowLogoComponent } from "./ArrowLogoComponent.js";
 import { DataContainerComponent } from "./DataContainerComponent.js";
 import { ShipsComponent } from "./ShipsComponent.js";
+import { RescueShipComponent } from "./RescueShipComponent.js";
+import { BorderLineMobile } from "./ArrowLogoItems/BorderLine.js";
 
 // import { useQuery } from "@apollo/client";
 // import { querySpaceX } from "..";
@@ -49,6 +51,11 @@ const ContainerSection = styled.section`
   width: 100%;
   max-width: 1140px;
   border-bottom: 1px solid #5c5c5d;
+  @media screen and (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
 `;
 const ErrorContainer = styled.section`
   height: 100vh;
@@ -62,6 +69,12 @@ const ErrorText = styled.h1`
   font-weight: bold;
   letter-spacing: 0.5rem;
 `;
+
+const RescueShipsContainer = styled.section`
+  height: 5rem;
+  width: 100%;
+  background-color: red;
+`
 export function LaunchesContainer() {
   const { data, loading, error } = useQuery(GET_STARTS);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -106,16 +119,14 @@ export function LaunchesContainer() {
           primaryCallback={() => incrementCurrentIndex()}
           secondaryCallback={() => decrementCurrentIndex()}
         ></ArrowLogoComponent>
-
-        {/* <Title>{dataValue[currentIndex].mission_name}</Title> */}
+        <BorderLineMobile/>
+        
         {singleItem !== undefined && (
           <DataContainerComponent data={singleItem} />
         )}
-        {currentIndex === 0 && <p>Index równy 0</p>}
-        {currentIndex === 1 && <p>Index równy 1</p>}
-        {currentIndex === 2 && <p>Index równy 2</p>}
-        {currentIndex === 3 && <p>Index równy 3</p>}
-        {currentIndex === 4 && <p>Index równy 4</p>}
+        <BorderLineMobile/>
+     
+        <RescueShipComponent/>
         <ShipsComponent currentIndex={currentIndex}></ShipsComponent>
       </ContainerSection>
     </>
