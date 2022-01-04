@@ -1,6 +1,7 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
-import { ArrowLogoContainer } from "./ArrowLogoContainer";
+import { ArrowLogoComponent } from "./ArrowLogoComponent";
+import { DataContainerComponent } from "./DataContainerComponent.js";
 
 // import { useQuery } from "@apollo/client";
 // import { querySpaceX } from "..";
@@ -26,8 +27,8 @@ const GET_ROCKETS = gql`
             flight
             core {
               reuse_count
-              status
             }
+            land_success
           }
         }
         second_stage {
@@ -38,18 +39,13 @@ const GET_ROCKETS = gql`
         }
       }
     }
-    ships {
-      home_port
-      image
-      name
-    }
   }
 `;
+
 
 const ContainerSection = styled.section`
   width: 100%;
   max-width: 1140px;
-  height: 47.1rem;
   border-bottom: 1px solid #5c5c5d;
 `;
 const ErrorContainer = styled.section`
@@ -64,29 +60,28 @@ const ErrorText = styled.h1`
   font-weight: bold;
   letter-spacing: 0.5rem;
 `;
-
-const Title = styled.h1`
-  font-size: 2rem;
-  font-weight: bold;
-  color: white;
-`;
-
 export function LaunchesContainer() {
-  const [currentIndex, setCurrentIndex] = useState(0);
   const { data, loading, error } = useQuery(GET_ROCKETS);
-  console.log(data);
+  const [currentIndex, setCurrentIndex] = useState(0);
+
+  let singleItem;
+  if (data !== undefined) {
+    console.log(typeof data);
+    console.log(data);
+    singleItem = data.launchesPast[currentIndex];
+  }
 
   const incrementCurrentIndex = () => {
-    if (currentIndex < 4) {
+    if (currentIndex < 4 && singleItem !== undefined) {
       setCurrentIndex((prevCount) => prevCount + 1);
-    } else if (currentIndex === 4) {
+    } else if (currentIndex === 4 && singleItem !== undefined) {
       setCurrentIndex(0);
     }
   };
   const decrementCurrentIndex = () => {
-    if (currentIndex === 0) {
+    if (currentIndex === 0 && singleItem !== undefined) {
       setCurrentIndex(4);
-    } else {
+    } else if (currentIndex >= 1 && singleItem !== undefined) {
       setCurrentIndex((prevCount) => prevCount - 1);
     }
   };
@@ -101,20 +96,18 @@ export function LaunchesContainer() {
       </ErrorContainer>
     );
   }
+  //   {data[currentIndex].mission_name}
   return (
     <>
       <ContainerSection>
-        <ArrowLogoContainer
+        <ArrowLogoComponent
           primaryCallback={() => incrementCurrentIndex()}
           secondaryCallback={() => decrementCurrentIndex()}
-        ></ArrowLogoContainer>
-        <button onClick={() => incrementCurrentIndex()}>
-          Counter increment {currentIndex}
-        </button>
-        {/* <Title>Abcabc{data[currentIndex].mission_name}</Title> */}
-        <button onClick={() => decrementCurrentIndex()}>
-          Counter decrement {currentIndex}
-        </button>
+        ></ArrowLogoComponent>
+    
+        {/* <Title>{dataValue[currentIndex].mission_name}</Title> */}
+        {singleItem !== undefined && <DataContainerComponent data={singleItem} />}
+      
       </ContainerSection>
     </>
   );
