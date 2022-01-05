@@ -6,7 +6,6 @@ import { ShipsComponent } from "./ShipsComponent.js";
 import { RescueShipComponent } from "./RescueShipComponent.js";
 import { BorderLineComponent } from "./BorderLineComponent.js";
 
-
 import { gql, useQuery } from "@apollo/client";
 
 const GET_STARTS = gql`
@@ -40,7 +39,6 @@ const GET_STARTS = gql`
           }
         }
       }
-     
     }
   }
 `;
@@ -61,7 +59,8 @@ const ErrorContainer = styled.section`
   display: flex;
   align-items: center;
   justify-content: center;
-  background-color: red;
+  background: rgb(0, 0, 0);
+  background: linear-gradient(297.9deg, #323237 15.11%, #000000 90.89%);
 `;
 const ErrorText = styled.h1`
   font-weight: bold;
@@ -93,7 +92,13 @@ export function LaunchesContainer() {
   };
 
   if (loading) {
-    return <h1>loading</h1>;
+    return (
+      <>
+        <ErrorContainer>
+          <h1>loading</h1>
+        </ErrorContainer>
+      </>
+    );
   }
   if (error) {
     return (
@@ -102,7 +107,7 @@ export function LaunchesContainer() {
       </ErrorContainer>
     );
   }
- 
+
   return (
     <>
       <ContainerSection>
@@ -110,14 +115,14 @@ export function LaunchesContainer() {
           primaryCallback={() => incrementCurrentIndex()}
           secondaryCallback={() => decrementCurrentIndex()}
         ></ArrowLogoComponent>
-        <BorderLineComponent/>
+        <BorderLineComponent />
 
         {singleItem !== undefined && (
           <DataContainerComponent data={singleItem} />
         )}
-        <BorderLineComponent/>
-     
-        <RescueShipComponent/>
+        <BorderLineComponent />
+
+        <RescueShipComponent />
         <ShipsComponent currentIndex={currentIndex}></ShipsComponent>
       </ContainerSection>
     </>
