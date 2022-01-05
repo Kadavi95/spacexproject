@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import styled from "styled-components";
 import { ArrowLogoComponent } from "./ArrowLogoComponent.js";
 import { DataContainerComponent } from "./DataContainerComponent.js";
 import { ShipsComponent } from "./ShipsComponent.js";
 import { RescueShipComponent } from "./RescueShipComponent.js";
-import { BorderLineMobile } from "./ArrowLogoItems/BorderLine.js";
+import { BorderLineComponent } from "./BorderLineComponent.js";
 
-// import { useQuery } from "@apollo/client";
-// import { querySpaceX } from "..";
 
 import { gql, useQuery } from "@apollo/client";
 
@@ -70,19 +68,12 @@ const ErrorText = styled.h1`
   letter-spacing: 0.5rem;
 `;
 
-const RescueShipsContainer = styled.section`
-  height: 5rem;
-  width: 100%;
-  background-color: red;
-`
 export function LaunchesContainer() {
   const { data, loading, error } = useQuery(GET_STARTS);
   const [currentIndex, setCurrentIndex] = useState(0);
 
   let singleItem;
   if (data !== undefined) {
-    console.log(typeof data);
-    console.log(data);
     singleItem = data.launchesPast[currentIndex];
   }
 
@@ -111,7 +102,7 @@ export function LaunchesContainer() {
       </ErrorContainer>
     );
   }
-  //   {data[currentIndex].mission_name}
+ 
   return (
     <>
       <ContainerSection>
@@ -119,12 +110,12 @@ export function LaunchesContainer() {
           primaryCallback={() => incrementCurrentIndex()}
           secondaryCallback={() => decrementCurrentIndex()}
         ></ArrowLogoComponent>
-        <BorderLineMobile/>
-        
+        <BorderLineComponent/>
+
         {singleItem !== undefined && (
           <DataContainerComponent data={singleItem} />
         )}
-        <BorderLineMobile/>
+        <BorderLineComponent/>
      
         <RescueShipComponent/>
         <ShipsComponent currentIndex={currentIndex}></ShipsComponent>

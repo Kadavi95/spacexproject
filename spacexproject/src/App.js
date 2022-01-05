@@ -1,8 +1,6 @@
 import React from "react";
 import styled from "styled-components";
 import { LaunchesContainer } from "./Components/LaunchesContainer.js";
-
-//2//
 import { ApolloProvider, InMemoryCache, ApolloClient } from "@apollo/client";
 
 const client = new ApolloClient({
@@ -30,5 +28,4 @@ function App() {
     </>
   );
 }
-
 export default App;

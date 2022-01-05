@@ -1,6 +1,8 @@
 import React from "react";
-import styled, { StyledComponent } from "styled-components";
+import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
+import { ShipsContainer } from "./ShipsComponentItems/ShipsContainer.js";
+import { ShipContainer } from "./ShipsComponentItems/ShipContainer.js";
 
 const GET_SHIPS = gql`
   {
@@ -13,38 +15,36 @@ const GET_SHIPS = gql`
     }
   }
 `;
-const ShipsContainer = styled.section`
-  width: 100%;
-  height: 550px;
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  border-bottom: 1px solid #5c5c5d;
-  @media screen and (max-width: 768px){
-    width: 70%;
-    overflow: scroll;
-    justify-content: center;
-    height: 660px;
+// const ShipsContainer = styled.section`
+//   width: 100%;
+//   height: 550px;
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: flex-start;
+//   flex-wrap: wrap;
+//   border-bottom: 1px solid #5c5c5d;
+//   @media screen and (max-width: 768px){
+//     width: 70%;
+//     overflow: scroll;
+//     justify-content: center;
+//     height: 660px;
+//   }
+// `;
 
-    
-  }
-`;
-
-const ShipContainer = styled.div`
-  width: 24rem;
-  height: 26rem;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  background-color: white;
-  border-radius: 10px;
-  @media screen and (max-width: 768px){
-    width: 100%;
-    height: 32rem;
-    margin-bottom: 2rem;
-  }
-`;
+// const ShipContainer = styled.div`
+//   width: 24rem;
+//   height: 26rem;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: center;
+//   background-color: white;
+//   border-radius: 10px;
+//   @media screen and (max-width: 768px){
+//     width: 100%;
+//     height: 32rem;
+//     margin-bottom: 2rem;
+//   }
+// `;
 
 const IMGContainer = styled.img`
   width: 100%;
@@ -92,7 +92,6 @@ export function ShipsComponent(props) {
   const { data, loading, error } = useQuery(GET_SHIPS);
 
   const SetOne = [];
-  // const SetTwo = [];
   const SetThree = [];
   const SetFour = [];
   const SetFive = [];
@@ -143,7 +142,6 @@ export function ShipsComponent(props) {
       );
     });
     ThirdData = SetThree.map((item, index) => {
-      console.log(item);
       return (
         <>
           <ShipContainer key={item.id + index}>

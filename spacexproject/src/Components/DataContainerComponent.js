@@ -1,8 +1,16 @@
 import React from "react";
 import styled from "styled-components";
-import { DataContainer } from "./DataComponentItems/DataContainer";
-import { PrimaryDiv } from "./DataComponentItems/PrimaryDiv";
-
+import { DataContainer } from "./DataComponentItems/DataContainer.js";
+import { PrimaryDiv } from "./DataComponentItems/PrimaryDiv.js";
+import { SecondaryDiv } from "./DataComponentItems/SecondaryDiv.js";
+import { InfoContainer } from "./DataComponentItems/InfoContainer.js";
+import { InformationParagraph } from "./DataComponentItems/InformationParagraph.js";
+import { InformationParagraphGrey } from "./DataComponentItems/InformationParagraphGrey.js";
+import { MissionTitle } from "./DataComponentItems/MissionTitle.js";
+import { StatusParagraph } from "./DataComponentItems/StatusParagraph.js";
+import { MissionFailed } from "./DataComponentItems/MissionFailed.js";
+import { MissionPassed } from "./DataComponentItems/MissionPassed.js";
+import { ButtonElement } from "./DataComponentItems/ButtonElement.js";
 // const PrimaryDiv = styled.div`
 //   width: 70%;
 //   height: 100%;
@@ -15,105 +23,103 @@ import { PrimaryDiv } from "./DataComponentItems/PrimaryDiv";
 //     width: 100%;
 //   }
 // `;
-const SecondaryDiv = styled.div`
-  width: 30%;
-  height: 55%;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-  justify-content: space-evenly;
-  /* background-color: white; */
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    align-items: flex-start;
-  }
-`;
-const InfoContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  height: 30%;
-  align-items: flex-start;
-  justify-content: space-evenly;
-  @media screen and (max-width: 768px) {
-    align-items: flex-start !important;
-  }
-`;
-const InformationParagraph = styled.p`
-  font-size: 1.6rem;
-  font-weight: 500;
-`;
-const InformationParagraphGrey = styled.p`
-  font-size: 1.6rem;
-  font-weight: 500;
-  color: #868686;
-`;
-const MissionTitle = styled.h1`
-  font-size: 4.2rem;
-  font-weight: bold;
-`;
-const StatusParagraph = styled.div`
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-`;
-const MissionFailed = styled.div`
-  margin-left: 1.5rem;
-  text-align: center;
-  background-color: red;
-  color: #fff;
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
-  font-size: 1.6rem;
-`;
-const MissionPassed = styled.div`
-  margin-left: 1.5rem;
-  text-align: center;
-  background-color: green;
-  color: black;
-  padding: 0.5rem 1rem;
-  border-radius: 2px;
-  font-size: 1.6rem;
-`;
+// const SecondaryDiv = styled.div`
+//   width: 30%;
+//   height: 55%;
+//   display: flex;
+//   flex-direction: column;
+//   align-items: flex-end;
+//   justify-content: space-evenly;
+//   /* background-color: white; */
+//   @media screen and (max-width: 768px) {
+//     width: 100%;
+//     align-items: flex-start;
+//   }
+// `;
+// const InfoContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   height: 30%;
+//   align-items: flex-start;
+//   justify-content: space-evenly;
+//   @media screen and (max-width: 768px) {
+//     align-items: flex-start !important;
+//   }
+// `;
+// const InformationParagraph = styled.p`
+//   font-size: 1.6rem;
+//   font-weight: 500;
+// `;
+// const InformationParagraphGrey = styled.p`
+//   font-size: 1.6rem;
+//   font-weight: 500;
+//   color: #868686;
+// `;
+// const MissionTitle = styled.h1`
+//   font-size: 4.2rem;
+//   font-weight: bold;
+//   @media screen {
+//     font-size: 2.1rem;
+//   }
+// `;
+// const StatusParagraph = styled.div`
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+// `;
+// const MissionFailed = styled.div`
+//   margin-left: 1.5rem;
+//   text-align: center;
+//   background-color: red;
+//   color: #fff;
+//   padding: 0.5rem 1rem;
+//   border-radius: 2px;
+//   font-size: 1.6rem;
+// `;
+// const MissionPassed = styled.div`
+//   margin-left: 1.5rem;
+//   text-align: center;
+//   background-color: green;
+//   color: black;
+//   padding: 0.5rem 1rem;
+//   border-radius: 2px;
+//   font-size: 1.6rem;
+// `;
 
-const ButtonElement = styled.a`
-  padding: 1.5rem 4rem;
-  background-color: transparent;
-  border: 2px solid #ffffff;
-  border-radius: 1px;
-  color: #ffffff;
-  text-decoration: none;
-  transition: all 0.3s ease-in-out;
-  font-size: 1.6rem;
-  &:hover {
-    box-shadow: inset -8.2rem 0 0 0 #fff, inset 8.2rem 0 0 0 #fff;
-    color: #000;
-  }
-  @media screen and (max-width: 768px) {
-    width: 100%;
-    text-align: center;
-    padding: 0;
-    padding: 2.5rem 0rem;
-    &:hover {
-      box-shadow: none;
-      color: #ffffff;
-    }
-  }
-`;
+// const ButtonElement = styled.a`
+//   padding: 1.5rem 4rem;
+//   background-color: transparent;
+//   border: 2px solid #ffffff;
+//   border-radius: 1px;
+//   color: #ffffff;
+//   text-decoration: none;
+//   transition: all 0.3s ease-in-out;
+//   font-size: 1.6rem;
+//   &:hover {
+//     box-shadow: inset -8.2rem 0 0 0 #fff, inset 8.2rem 0 0 0 #fff;
+//     color: #000;
+//   }
+//   @media screen and (max-width: 768px) {
+//     width: 100%;
+//     text-align: center;
+//     padding: 0;
+//     padding: 2.5rem 0rem;
+//     &:hover {
+//       box-shadow: none;
+//       color: #ffffff;
+//     }
+//   }
+// `;
 
 export function DataContainerComponent(props) {
-  console.log(props);
-  console.log(props.data);
-  console.log(props.data.mission_name);
-  console.log(props.data.links.video_link);
-  console.log(props.data.launch_date_local);
-  console.log(props.data.launch_site.site_id);
+
 
   const AirForceBaseId = [...props.data.launch_site.site_id]
     .toString()
     .replace(/,/g, "")
     .replace(/_/g, " ")
     .toUpperCase();
-  console.log("AirForceBaseId", AirForceBaseId);
+  // console.log("AirForceBaseId", AirForceBaseId);
 
   let year = [...props.data.launch_date_local].slice(0, 4);
   let yearStringfied = year.toString().replace(/,/g, "");
@@ -163,19 +169,7 @@ export function DataContainerComponent(props) {
   } else if (monthStringfied === "12") {
     monthName = ArrayOfMonths[11];
   }
-
   let DataString = `${dayStringfied} ${monthName} ${yearStringfied}`;
-
-  // let dateInverrted = [...day, "/", ...month, "/", ...year];
-  // let dataString = dateInverrted.toString();
-  // let dataStringedWithoutCommas = dataString.replace(/,/g, "");
-  // console.log("dataString", dataString);
-  // console.log("dataStringedWithoutCommas", dataStringedWithoutCommas, typeof dataStringedWithoutCommas);
-
-  // let date = new Date(`"${dataStringedWithoutCommas}"`);
-  // console.log(date);
-
-  //   props.data.rocket.first_stage.cores[0].land_success;
 
   return (
     <>

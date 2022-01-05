@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const BorderLineMobile = styled.div`
+export const BorderLineComponent = styled.div`
 width: 100%;
 height: 1px;
 background-color: #5C5C5D;
