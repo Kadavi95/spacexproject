@@ -92,7 +92,11 @@ const ButtonElement = styled.a`
     width: 100%;
     text-align: center;
     padding: 0;
-    padding: 2.5rem 0rem
+    padding: 2.5rem 0rem;
+    &:hover {
+      box-shadow: none;
+      color: #ffffff;
+    }
   }
 `;
 

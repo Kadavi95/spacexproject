@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { ArrowLeft } from "./ArrowLogoItems/ArrowLeft";
 import { ArrowRight } from "./ArrowLogoItems/ArrowRight";
 import { Container } from "./ArrowLogoItems/ArrowLogoContainer";
+import { ReactComponent as SVGSpaceX } from "../Assets/SpaceX-Logo.svg";
 
 // const ArrowLeft = styled(IoIosArrowBack)`
 //   height: 4rem;
@@ -26,12 +27,32 @@ import { Container } from "./ArrowLogoItems/ArrowLogoContainer";
 //   }
 // `;
 const Logo = styled.img`
-  height: 2.415rem;
+  height: 6rem;
+  color: white;
   margin-top: 2rem;
   @media screen and (max-width: 768px) {
     margin-top: 0rem;
-    height: 1.6rem;
+    height: 3rem;
   }
+`;
+const SpaceXLogo = styled(SVGSpaceX)`
+  /* width: 250; */
+  /* height: 10; */
+  margin-top: 2rem;
+  height: 5rem;
+  path {
+    fill: #ffffff;
+  }
+  polyline {
+    fill: #ffffff;
+  }
+  rect {
+    fill: #ffffff;
+  }
+  @media screen and (max-width: 768px) {
+    height: 2rem;
+    margin-top: 0rem;
+  } 
 `;
 
 // const Container = styled.section`
@@ -49,7 +70,8 @@ export function ArrowLogoComponent(props) {
     <>
       <Container>
         <ArrowLeft onClick={props.secondaryCallback} />
-        <Logo src="/assets/Vector.png" alt="logoSpaceX" />
+        {/* <Logo src="/assets/SpaceXW.png" alt="logoSpaceX" /> */}
+        <SpaceXLogo></SpaceXLogo>
         <ArrowRight onClick={props.primaryCallback} />
       </Container>
     </>

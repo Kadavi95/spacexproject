@@ -15,7 +15,7 @@ const GET_SHIPS = gql`
 `;
 const ShipsContainer = styled.section`
   width: 100%;
-  height: 450px;
+  height: 550px;
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
@@ -41,7 +41,7 @@ const ShipContainer = styled.div`
   border-radius: 10px;
   @media screen and (max-width: 768px){
     width: 100%;
-    height: 30rem;
+    height: 32rem;
     margin-bottom: 2rem;
   }
 `;
