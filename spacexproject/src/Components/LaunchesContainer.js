@@ -5,6 +5,8 @@ import { DataContainerComponent } from "./DataContainerComponent.js";
 import { ShipsComponent } from "./ShipsComponent.js";
 import { RescueShipComponent } from "./RescueShipComponent.js";
 import { BorderLineComponent } from "./BorderLineComponent.js";
+import { ErrorContainer } from "./ErrorContainer.js";
+import { Circle} from "react-spinners-css";
 
 import { gql, useQuery } from "@apollo/client";
 
@@ -53,15 +55,7 @@ const ContainerSection = styled.section`
     align-items: center;
   }
 `;
-const ErrorContainer = styled.section`
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: rgb(0, 0, 0);
-  background: linear-gradient(297.9deg, #323237 15.11%, #000000 90.89%);
-`;
+
 const ErrorText = styled.h1`
   font-weight: bold;
   letter-spacing: 0.5rem;
@@ -95,7 +89,7 @@ export function LaunchesContainer() {
     return (
       <>
         <ErrorContainer>
-          <h1>loading</h1>
+          <Circle color="#ffffff"></Circle>
         </ErrorContainer>
       </>
     );

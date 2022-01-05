@@ -1,5 +1,4 @@
 import React from "react";
-import styled from "styled-components";
 import { gql, useQuery } from "@apollo/client";
 import { ShipsContainer } from "./ShipsComponentItems/ShipsContainer.js";
 import { ShipContainer } from "./ShipsComponentItems/ShipContainer.js";
@@ -10,6 +9,8 @@ import { InfoContainerShip } from "./ShipsComponentItems/InfoContainerShip.js";
 import { StaticContainer } from "./ShipsComponentItems/StaticContainer.js";
 import { StaticInfo } from "./ShipsComponentItems/StaticInfo.js";
 import { StaticItemInfo } from "./ShipsComponentItems/StaticItemInfo.js";
+import { ErrorContainer } from "./ErrorContainer.js";
+import { Circle } from "react-spinners-css";
 
 const GET_SHIPS = gql`
   {
@@ -25,6 +26,16 @@ const GET_SHIPS = gql`
 
 export function ShipsComponent(props) {
   const { data, loading, error } = useQuery(GET_SHIPS);
+
+  if (loading) {
+    return (
+      <>
+        <ErrorContainer>
+          <Circle color="#ffffff"></Circle>
+        </ErrorContainer>
+      </>
+    );
+  }
 
   const SetOne = [];
   const SetThree = [];
