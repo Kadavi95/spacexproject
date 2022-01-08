@@ -12,7 +12,7 @@ import { MissionPassed } from "./DataComponentItems/MissionPassed.js";
 import { ButtonElement } from "./DataComponentItems/ButtonElement.js";
 
 export function DataContainerComponent(props) {
-  console.log(props.data.launch_date_local);
+  console.log(props.data);
   const AirForceBaseId = [...props.data.launch_site.site_id]
     .toString()
     .replace(/,/g, "")
@@ -21,8 +21,11 @@ export function DataContainerComponent(props) {
 
   const localDateProps = props.data.launch_date_local;
   const localDate = new Date(localDateProps);
-  const configObject = {  year: 'numeric', month: 'short', day: 'numeric' };
-  const localDateStringified = localDate.toLocaleDateString('en-GB', configObject);
+  const configObject = { year: "numeric", month: "short", day: "numeric" };
+  const localDateStringified = localDate.toLocaleDateString(
+    "en-GB",
+    configObject
+  );
 
   return (
     <>

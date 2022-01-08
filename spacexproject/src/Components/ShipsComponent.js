@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { gql, useQuery } from "@apollo/client";
 import { ShipsContainer } from "./ShipsComponentItems/ShipsContainer.js";
 import { ShipContainer } from "./ShipsComponentItems/ShipContainer.js";
@@ -14,18 +14,40 @@ import { Circle } from "react-spinners-css";
 
 const GET_SHIPS = gql`
   {
-    ships {
-      home_port
-      image
-      name
-      weight_kg
-      id
+    launchesPast(limit: 5) {
+      mission_name
+      ships {
+        name
+        home_port
+        image
+        weight_kg
+      }
     }
   }
 `;
 
 export function ShipsComponent(props) {
+  const actualMissionNameProps = props.data.mission_name;
+  const [usedShips, setUsedShips] = useState([]);
   const { data, loading, error } = useQuery(GET_SHIPS);
+
+  const shipsArray = data;
+
+  if (data !== undefined) {
+    const shipsArrayLaunchesPast = shipsArray.launchesPast;
+    const singleMissionIndex = shipsArrayLaunchesPast.findIndex(
+      (item) => item.mission_name === actualMissionNameProps
+    );
+    const singleMission = shipsArrayLaunchesPast.slice(
+      singleMissionIndex,
+      singleMissionIndex + 1
+    );
+    const singleMissionShipsArrayProperty = singleMission[0].ships;
+    if (usedShips !== singleMissionShipsArrayProperty) {
+      setUsedShips(singleMissionShipsArrayProperty);
+    }
+  }
+
 
   if (loading) {
     return (
@@ -36,160 +58,40 @@ export function ShipsComponent(props) {
       </>
     );
   }
-
-  const SetOne = [];
-  const SetThree = [];
-  const SetFour = [];
-  const SetFive = [];
-
-  if (data !== undefined) {
-    SetOne.push(data.ships[0]);
-    SetOne.push(data.ships[21]);
-    SetOne.push(data.ships[5]);
-    SetOne.push(data.ships[3]);
-    SetThree.push(data.ships[7]);
-    SetFour.push(data.ships[7]);
-    SetFour.push(data.ships[3]);
-    SetFour.push(data.ships[17]);
-    SetFive.push(data.ships[0]);
-    SetFive.push(data.ships[5]);
-    SetFive.push(data.ships[21]);
-    SetFive.push(data.ships[3]);
-  }
-
-  let FirstData;
-  let ThirdData;
-  let FourthData;
-  let FifthData;
-
-  if (data !== undefined) {
-    FirstData = SetOne.map((item, index) => {
-      return (
-        <>
-          <ShipContainer key={item.id + index}>
-            <IMGContainer src={item.image} alt={item.name}></IMGContainer>
-            <HeadingContainer>
-              <Heading>{item.name}</Heading>
-            </HeadingContainer>
-            <InfoContainerShip>
-              <StaticContainer>
-                <StaticInfo>Home Port</StaticInfo>
-                <StaticInfo>Weight[kg]</StaticInfo>
-              </StaticContainer>
-              <StaticContainer>
-                <StaticItemInfo>{item.home_port}</StaticItemInfo>
-                <StaticItemInfo>
-                  {item.weight_kg === null ? "unknown" : item.weight_kg}
-                </StaticItemInfo>
-              </StaticContainer>
-            </InfoContainerShip>
-          </ShipContainer>
-        </>
-      );
-    });
-    ThirdData = SetThree.map((item, index) => {
-      return (
-        <>
-          <ShipContainer key={item.id + index}>
-            <IMGContainer src={item.image} alt={item.name}></IMGContainer>
-            <HeadingContainer>
-              <Heading>{item.name}</Heading>
-            </HeadingContainer>
-            <InfoContainerShip>
-              <StaticContainer>
-                <StaticInfo>Home Port</StaticInfo>
-                <StaticInfo>Weight[kg]</StaticInfo>
-              </StaticContainer>
-              <StaticContainer>
-                <StaticItemInfo>{item.home_port}</StaticItemInfo>
-                <StaticItemInfo>
-                  {item.weight_kg === null ? "unknown" : item.weight_kg}
-                </StaticItemInfo>
-              </StaticContainer>
-            </InfoContainerShip>
-          </ShipContainer>
-        </>
-      );
-    });
-    FourthData = SetFour.map((item, index) => {
-      return (
-        <>
-          <ShipContainer key={item.id + index}>
-            <IMGContainer src={item.image} alt={item.name}></IMGContainer>
-            <HeadingContainer>
-              <Heading>{item.name}</Heading>
-            </HeadingContainer>
-            <InfoContainerShip>
-              <StaticContainer>
-                <StaticInfo>Home Port</StaticInfo>
-                <StaticInfo>Weight[kg]</StaticInfo>
-              </StaticContainer>
-              <StaticContainer>
-                <StaticItemInfo>{item.home_port}</StaticItemInfo>
-                <StaticItemInfo>
-                  {item.weight_kg === null ? "unknown" : item.weight_kg}
-                </StaticItemInfo>
-              </StaticContainer>
-            </InfoContainerShip>
-          </ShipContainer>
-        </>
-      );
-    });
-    FifthData = SetFive.map((item, index) => {
-      return (
-        <>
-          <ShipContainer key={item.id + index}>
-            <IMGContainer src={item.image} alt={item.name}></IMGContainer>
-            <HeadingContainer>
-              <Heading>{item.name}</Heading>
-            </HeadingContainer>
-            <InfoContainerShip>
-              <StaticContainer>
-                <StaticInfo>Home Port</StaticInfo>
-                <StaticInfo>Weight[kg]</StaticInfo>
-              </StaticContainer>
-              <StaticContainer>
-                <StaticItemInfo>{item.home_port}</StaticItemInfo>
-                <StaticItemInfo>
-                  {item.weight_kg === null ? "unknown" : item.weight_kg}
-                </StaticItemInfo>
-              </StaticContainer>
-            </InfoContainerShip>
-          </ShipContainer>
-        </>
-      );
-    });
-  }
-
-  if (data !== undefined) {
-    if (props.currentIndex === 0 && FirstData !== undefined) {
-      return (
-        <>
-          <ShipsContainer>{FirstData}</ShipsContainer>
-        </>
-      );
-    } else if (props.currentIndex === 1) {
-      return <ShipsContainer></ShipsContainer>;
-    } else if (props.currentIndex === 2 && ThirdData !== undefined) {
-      return (
-        <>
-          <ShipsContainer>{ThirdData}</ShipsContainer>
-        </>
-      );
-    } else if (props.currentIndex === 3 && FourthData !== undefined) {
-      return (
-        <>
-          <ShipsContainer>{FourthData}</ShipsContainer>
-        </>
-      );
-    } else if (props.currentIndex === 4 && FifthData !== undefined) {
-      return (
-        <>
-          <ShipsContainer>{FifthData}</ShipsContainer>
-        </>
-      );
-    }
-  } else {
-    return null;
-  }
+  return (
+    <>
+      <ShipsContainer>
+        {usedShips.length > 0
+          ? usedShips.map((item, index) => {
+              console.log(item);
+              return (
+                <>
+                  <ShipContainer key={item.id + index}>
+                    <IMGContainer
+                      src={item.image}
+                      alt={item.name}
+                    ></IMGContainer>
+                    <HeadingContainer>
+                      <Heading>{item.name}</Heading>
+                    </HeadingContainer>
+                    <InfoContainerShip>
+                      <StaticContainer>
+                        <StaticInfo>Home Port</StaticInfo>
+                        <StaticInfo>Weight[kg]</StaticInfo>
+                      </StaticContainer>
+                      <StaticContainer>
+                        <StaticItemInfo>{item.home_port}</StaticItemInfo>
+                        <StaticItemInfo>
+                          {item.weight_kg === null ? "unknown" : item.weight_kg}
+                        </StaticItemInfo>
+                      </StaticContainer>
+                    </InfoContainerShip>
+                  </ShipContainer>
+                </>
+              );
+            })
+          : ""}
+      </ShipsContainer>
+    </>
+  );
 }

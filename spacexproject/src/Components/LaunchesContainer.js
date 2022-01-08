@@ -107,9 +107,8 @@ export function LaunchesContainer() {
         <BorderLineComponent />
         <DataContainerComponent data={data?.launchesPast[currentIndex]} />
         <BorderLineComponent />
-
         <RescueShipComponent />
-        <ShipsComponent currentIndex={currentIndex}></ShipsComponent>
+        <ShipsComponent currentIndex={currentIndex} data={data.launchesPast[currentIndex]}></ShipsComponent>
       </ContainerSection>
     </>
   );
