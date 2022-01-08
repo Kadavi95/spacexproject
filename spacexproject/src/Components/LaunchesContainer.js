@@ -6,7 +6,7 @@ import { ShipsComponent } from "./ShipsComponent.js";
 import { RescueShipComponent } from "./RescueShipComponent.js";
 import { BorderLineComponent } from "./BorderLineComponent.js";
 import { ErrorContainer } from "./ErrorContainer.js";
-import { Circle} from "react-spinners-css";
+import { Circle } from "react-spinners-css";
 
 import { gql, useQuery } from "@apollo/client";
 
@@ -65,22 +65,17 @@ export function LaunchesContainer() {
   const { data, loading, error } = useQuery(GET_STARTS);
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  let singleItem;
-  if (data !== undefined) {
-    singleItem = data.launchesPast[currentIndex];
-  }
-
   const incrementCurrentIndex = () => {
-    if (currentIndex < 4 && singleItem !== undefined) {
+    if (currentIndex < 4) {
       setCurrentIndex((prevCount) => prevCount + 1);
-    } else if (currentIndex === 4 && singleItem !== undefined) {
+    } else if (currentIndex === 4) {
       setCurrentIndex(0);
     }
   };
   const decrementCurrentIndex = () => {
-    if (currentIndex === 0 && singleItem !== undefined) {
+    if (currentIndex === 0) {
       setCurrentIndex(4);
-    } else if (currentIndex >= 1 && singleItem !== undefined) {
+    } else if (currentIndex >= 1) {
       setCurrentIndex((prevCount) => prevCount - 1);
     }
   };
@@ -110,10 +105,7 @@ export function LaunchesContainer() {
           secondaryCallback={() => decrementCurrentIndex()}
         ></ArrowLogoComponent>
         <BorderLineComponent />
-
-        {singleItem !== undefined && (
-          <DataContainerComponent data={singleItem} />
-        )}
+        <DataContainerComponent data={data?.launchesPast[currentIndex]} />
         <BorderLineComponent />
 
         <RescueShipComponent />
